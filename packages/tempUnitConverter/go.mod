@@ -1,4 +1,4 @@
-module github.com/devbyP/op
+module tempUnitConverter
 
 go 1.21.1
 

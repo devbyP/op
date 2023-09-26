@@ -1,0 +1,8 @@
+go 1.21.1
+
+use (
+	./csv_file_database
+	./error_handler_lib
+	./greeting
+	./tempUnitConverter
+)
