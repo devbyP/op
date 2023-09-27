@@ -16,11 +16,17 @@ func main() {
 	e.GET("/ctof", func(c echo.Context) error {
 		return c.String(http.StatusOK, "Hello, ctof")
 	})
-	e.GET("/ftoc", func(c echo.Context) error {
-		return c.String(http.StatusOK, "Hello, ftoc")
+	e.GET("/test-bind", func(c echo.Context) error {
+		f := Foo("")
+		if err := c.Bind(&f); err != nil {
+			return err
+		}
+		return c.String(http.StatusOK, string(f))
 	})
 	e.Start(":" + getPort())
 }
+
+type Foo string
 
 func getPort() string {
 	p := os.Getenv("PORT")
