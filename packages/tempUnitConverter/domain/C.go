@@ -2,8 +2,12 @@ package domain
 
 type C float64
 
-func (c C) Temp() float64 {
+func (c C) Float64() float64 {
 	return float64(c)
+}
+
+func (c C) Unit() string {
+	return "C"
 }
 
 func (c C) ToF() F {
