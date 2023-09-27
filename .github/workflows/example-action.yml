@@ -19,6 +19,7 @@ jobs:
         with:
           go-version: "1.21.*"
       - name: Build
+        working-directory: "./packages/tempUnitConverter"
         run: go get .
       - name: Test
         run: go test ./...
