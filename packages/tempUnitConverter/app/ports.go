@@ -14,4 +14,9 @@ type ITemperatureStorage interface {
 // driving port
 type AppPort interface {
 	SaveFtoC(f domain.F) (int, error)
+	SaveC(c domain.C) (int, error)
+	FtoC(f domain.F) (domain.C, error)
+	CtoF(c domain.C) (domain.F, error)
+	GetReport(id int) (*domain.TemperatureReport, error)
+	GetReports() ([]*domain.TemperatureReport, error)
 }
