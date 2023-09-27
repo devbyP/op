@@ -8,13 +8,13 @@ import (
 var _ app.ITemperatureStorage = &Storage{}
 
 type Storage struct {
-	db *csvdb.Database[*TempRecord]
+	DB *csvdb.Database[*TempRecord]
 }
 
-func New() *Storage {
-	db, err := csvdb.OpenCsvDatabase[*TempRecord]("./temp.csv")
+func New(path string) *Storage {
+	db, err := csvdb.OpenCsvDatabase[*TempRecord](path)
 	if err != nil {
 		panic(err)
 	}
-	return &Storage{db: db}
+	return &Storage{DB: db}
 }
