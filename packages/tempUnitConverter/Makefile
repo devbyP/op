@@ -6,3 +6,6 @@ build:
 
 dev:
 	go run ./cmd/http/main.go
+
+dev-watch:
+	air
