@@ -1,0 +1,22 @@
+name: example-workflow
+run-name: test example service
+on:
+  push:
+    branchs:
+      - main
+  workflow_dispatch:
+
+jobs:
+  build-test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup Go
+        uses: actions/setup-go@v4
+        with:
+          go-version: "1.21.*"
+      - name: Build
+        run: go get .
+      - name: Test
+        run: go test ./...
