@@ -9,7 +9,7 @@ import (
 )
 
 type Database[T any] struct {
-	data []T
+	Data []T
 }
 
 func OpenCsvDatabase[T any](path string) (*Database[T], error) {
@@ -33,7 +33,7 @@ func OpenCsvDatabase[T any](path string) (*Database[T], error) {
 		}
 		data[i] = d
 	}
-	csvdb := &Database[T]{}
+	csvdb := &Database[T]{Data: data}
 	return csvdb, nil
 }
 
@@ -47,8 +47,8 @@ func toStruct[T any](header []string, line []string) (T, error) {
 		}
 		d.WriteString("\"" + h + "\"")
 		d.WriteString(":")
-		_, ok := strconv.Atoi(line[i])
-		if ok != nil {
+		_, err := strconv.ParseFloat(line[i], 64)
+		if err != nil {
 			d.WriteString("\"" + line[i] + "\"")
 		} else {
 			d.WriteString(line[i])
