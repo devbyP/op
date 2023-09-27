@@ -4,6 +4,8 @@ on:
   push:
     branchs:
       - main
+    paths:
+      - 'packages/tempUnitConverter/**'
   workflow_dispatch:
 
 jobs:
