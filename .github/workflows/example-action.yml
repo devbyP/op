@@ -22,4 +22,5 @@ jobs:
         working-directory: "./packages/tempUnitConverter"
         run: go get .
       - name: Test
+        working-directory: "./packages/tempUnitConverter"
         run: go test ./...
