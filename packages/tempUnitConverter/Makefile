@@ -2,8 +2,7 @@ start: build
 	./bin/app
 
 build:
-	@go build ./cmd/http/main.go -o ./bin/app
-
+	@go build -o ./bin/app ./cmd/http/main.go
 dev:
 	go run ./cmd/http/main.go
 

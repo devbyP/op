@@ -10,7 +10,7 @@ func TestGetAllTemperatureReports(t *testing.T) {
 	r, err := db.GetAllTemperatureReports()
 	require.NoError(t, err)
 	rlen := len(r)
-	dataLen := len(db.DB.Data)
+	dataLen := len(db.db.Data)
 	require.Equal(t, dataLen, rlen)
 	require.Equal(t, r[0].ID, 0)
 }

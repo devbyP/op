@@ -6,13 +6,13 @@ import (
 )
 
 func (s *Storage) SaveTemperatureReport(c domain.C) (int, error) {
-	curId := len(s.DB.Data)
+	curId := len(s.db.Data)
 	tr := &TempRecord{
 		ID:         curId,
 		TempInC:    c.Float64(),
 		ReportedAt: time.Now().Unix(),
 		Location:   "Bangkok",
 	}
-	s.DB.Data = append(s.DB.Data, tr)
+	s.db.Data = append(s.db.Data, tr)
 	return curId, nil
 }

@@ -8,7 +8,7 @@ import (
 var _ app.ITemperatureStorage = &Storage{}
 
 type Storage struct {
-	DB *csvdb.Database[*TempRecord]
+	db *csvdb.Database[*TempRecord]
 }
 
 func New(path string) *Storage {
@@ -16,5 +16,5 @@ func New(path string) *Storage {
 	if err != nil {
 		panic(err)
 	}
-	return &Storage{DB: db}
+	return &Storage{db: db}
 }
