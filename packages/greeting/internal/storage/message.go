@@ -25,21 +25,21 @@ func NewMessageStorage(path string) *MessageStorage {
 }
 
 func (ms *MessageStorage) GetMessages() ([]*model.MessageData, error) {
-	return ms.store.db.data, nil
+	return ms.store.db.Data, nil
 }
 
 func (ms *MessageStorage) GetMessageByID(id int) (*model.MessageData, error) {
-	return ms.store.db.data[id], nil
+	return ms.store.db.Data[id], nil
 }
 
 func (ms *MessageStorage) SaveMessage(mess string, t model.MessageType) (id int, err error) {
-	id = len(ms.store.db.data) + 1
+	id = len(ms.store.db.Data) + 1
 	payload := &model.MessageData{
 		ID:        id,
 		Message:   mess,
 		Type:      t,
 		CreatedAt: time.Now().Unix(),
 	}
-	ms.store.db.data = append(ms.store.db.data, payload)
+	ms.store.db.Data = append(ms.store.db.Data, payload)
 	return id, nil
 }

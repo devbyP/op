@@ -9,10 +9,12 @@ import (
 	"github.com/labstack/echo/v4"
 )
 
+const DefaultPort = "8000"
+
 func main() {
 	port := os.Getenv("PORT")
 	if port == "" {
-		port = "8000"
+		port = DefaultPort
 	}
 	e := echo.New()
 	e.GET("/", func(c echo.Context) error {
