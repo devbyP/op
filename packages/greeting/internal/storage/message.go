@@ -33,7 +33,7 @@ func (ms *MessageStorage) GetMessageByID(id int) (*model.MessageData, error) {
 }
 
 func (ms *MessageStorage) SaveMessage(mess string, t model.MessageType) (id int, err error) {
-	id = len(ms.store.db.Data) + 1
+	id = GenerateIncrementalID(ms.store.db.Data)
 	payload := &model.MessageData{
 		ID:        id,
 		Message:   mess,
@@ -41,5 +41,5 @@ func (ms *MessageStorage) SaveMessage(mess string, t model.MessageType) (id int,
 		CreatedAt: time.Now().Unix(),
 	}
 	ms.store.db.Data = append(ms.store.db.Data, payload)
-	return id, nil
+	return
 }

@@ -9,7 +9,7 @@ type Adapter struct {
 	greetingService ports.IGreeting
 }
 
-func New(service handler.Service) *Adapter {
+func New(service *handler.Service) *Adapter {
 	return &Adapter{
 		greetingService: handler.NewGreetingService(service),
 	}
