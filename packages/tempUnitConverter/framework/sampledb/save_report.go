@@ -1,18 +1,19 @@
 package sampledb
 
 import (
-	"tempUnitConverter/domain"
 	"time"
+
+	"tempUnitConverter/domain"
 )
 
 func (s *Storage) SaveTemperatureReport(c domain.C) (int, error) {
-	curId := len(s.db.Data)
-	tr := &TempRecord{
-		ID:         curId,
+	currId := len(s.DB.Data)
+	val := &TempRecord{
+		ID:         currId,
 		TempInC:    c.Float64(),
-		ReportedAt: time.Now().Unix(),
 		Location:   "Bangkok",
+		ReportedAt: time.Now().Unix(),
 	}
-	s.db.Data = append(s.db.Data, tr)
-	return curId, nil
+	s.DB.Data = append(s.DB.Data, val)
+	return currId, nil
 }

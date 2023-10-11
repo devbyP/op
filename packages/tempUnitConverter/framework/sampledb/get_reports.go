@@ -7,18 +7,17 @@ import (
 )
 
 func (s *Storage) GetTemperatureReport(id int) (*domain.TemperatureReport, error) {
-	d := s.db.Data
-	if id > len(d) {
+	if id >= len(s.DB.Data) || id < 0 {
 		return nil, errors.New("report not found")
 	}
-	val := d[id]
-	return val.toDomainReport(), nil
+	val := s.DB.Data[id]
+	return val.toDomainTempReport(), nil
 }
 
 func (s *Storage) GetAllTemperatureReports() ([]*domain.TemperatureReport, error) {
-	d := make([]*domain.TemperatureReport, len(s.db.Data))
-	for i, val := range s.db.Data {
-		d[i] = val.toDomainReport()
+	rep := make([]*domain.TemperatureReport, len(s.DB.Data))
+	for _, val := range s.DB.Data {
+		rep = append(rep, val.toDomainTempReport())
 	}
-	return d, nil
+	return rep, nil
 }

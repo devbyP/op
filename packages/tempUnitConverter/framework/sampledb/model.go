@@ -13,7 +13,7 @@ type TempRecord struct {
 	Location   string  `json:"location"`
 }
 
-func (t TempRecord) toDomainReport() *domain.TemperatureReport {
+func (t *TempRecord) toDomainTempReport() *domain.TemperatureReport {
 	return &domain.TemperatureReport{
 		ID:         t.ID,
 		TempInC:    t.TempInC,
