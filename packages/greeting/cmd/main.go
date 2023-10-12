@@ -1,15 +1,25 @@
 package main
 
 import (
-	"fmt"
-	"net/http"
 	"os"
-	"time"
+
+	"op/internal/adapter"
+	"op/internal/handler"
 
 	"github.com/labstack/echo/v4"
 )
 
 const DefaultPort = "8000"
+
+var (
+	service *handler.Service
+	adt     *adapter.Adapter
+)
+
+func init() {
+	service = handler.New("./message.csv")
+	adt = adapter.New(service)
+}
 
 func main() {
 	port := os.Getenv("PORT")
@@ -17,9 +27,8 @@ func main() {
 		port = DefaultPort
 	}
 	e := echo.New()
-	e.GET("/", func(c echo.Context) error {
-		t := time.Now().Unix()
-		return c.String(http.StatusOK, fmt.Sprintf("Hello, World!, %d", t))
-	})
+	e.GET("/:id", adt.HandleGetMessage)
+	e.GET("/", adt.HandleGetAllMessage)
+	e.POST("/", adt.HandleSaveMessage)
 	e.Logger.Fatal(e.Start(":" + port))
 }

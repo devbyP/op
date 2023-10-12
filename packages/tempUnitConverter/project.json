@@ -3,6 +3,13 @@
     "root": "packages/tempUnitConverter",
     "sourceRoot": "packages/tempUnitConverter",
     "targets": {
+        "test": {
+            "executor": "nx:run-commands",
+            "options": {
+                "command": "make test",
+                "cwd": "packages/tempUnitConverter"
+            }
+        },
         "build": {
             "executor": "nx:run-commands",
             "options": {

@@ -4,5 +4,7 @@ use (
 	./csv_file_database
 	./error_handler_lib
 	./greeting
+	./myapp
+	./name_message
 	./tempUnitConverter
 )

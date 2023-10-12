@@ -3,6 +3,13 @@
     "root": "packages/greeting",
     "sourceRoot": "packages/greeting",
     "targets": {
+        "test": {
+            "executor": "nx:run-commands",
+            "options": {
+                "command": "make test",
+                "cwd": "packages/greeting"
+            }
+        },
         "build": {
             "executor": "nx:run-commands",
             "options": {

@@ -13,9 +13,16 @@ func (a *Adapter) HandleGetMessage(c echo.Context) error {
 		return err
 	}
 	res, err := a.greetingService.Greeting(id)
+	if err != nil {
+		return err
+	}
 	return c.JSON(http.StatusOK, res)
 }
 
 func (a *Adapter) HandleGetAllMessage(c echo.Context) error {
-	return nil
+	res, err := a.greetingService.GreetingAll()
+	if err != nil {
+		return err
+	}
+	return c.JSON(http.StatusOK, res)
 }
